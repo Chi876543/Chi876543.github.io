@@ -1,54 +1,633 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+
+    <title>Portfolio Website - Developer & Designer</title>
+    <link rel="canonical" href="https://roycenoel.space/">
+
+    <meta name="description"
+        content="Explore the portfolio of Royce Gonsalves, skilled developer & designer. Projects in web, Android, AI, animation, graphics design, and more.">
+    <meta name="keywords"
+        content="Portfolio, Developer, Designer, Web Development, Android, AI, Animation, Projects, Graphics Design">
+    <meta name="author" content="Royce Gonsalves">
+
+    <link rel="icon" type="image/png" href="portfolioIcon.png">
+
+    <meta property="og:title" content="Portfolio Website - Royce Gonsalves">
+    <meta property="og:description" content="Showcase of web, Android, AI tools, and creative projects.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://roycenoel.space/">
+    <meta property="og:image" content="https://roycenoel.space/portfolioIcon.png">
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.19/build/spline-viewer.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Person",
+      "name": "Royce Gonsalves",
+      "url": "https://roycenoel.space/",
+      "jobTitle": "Developer & Designer",
+      "sameAs": [
+        "https://github.com/roycenoel",
+        "https://www.linkedin.com/in/royce-gonsalves-478782212/",
+        "https://www.instagram.com/royce_gonsalves_/"
+      ],
+      "knowsAbout": ["Web Development", "Spreadlink", "Android Apps", "AI Tools", "Animation", "Graphics Design"]
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Enhanced Profile Section */
+        .profile-section {
+            text-align: center;
+            max-width: 700px;
+            margin: 2rem auto 4rem;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Tree Structure */
+        .founder-tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .founder-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-white);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            border: 1px solid var(--border-color);
+            z-index: 2;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .founder-tree:hover .founder-label {
+            border-color: var(--text-white);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .trunk {
+            width: 1px;
+            height: 30px;
+            background: var(--border-color);
+            position: relative;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .branches {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .branch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding-top: 20px;
+            flex: 1;
+        }
+
+        /* Horizontal Lines */
+        .branch::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            height: 1px;
+            background: var(--border-color);
+            width: 50%;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .branch:first-child::before { right: 0; }
+        .branch:last-child::before { left: 0; }
+
+        /* Vertical Lines to Buttons */
+        .branch::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            height: 20px;
+            width: 1px;
+            background: var(--border-color);
+            left: 50%;
+            transform: translateX(-50%);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        /* Button Styling */
+        .project-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            min-width: 140px;
+            animation: fadeIn 0.5s ease-out backwards;
+        }
+
+        .branch:first-child .project-btn { animation-delay: 0.2s; }
+        .branch:last-child .project-btn { animation-delay: 0.3s; }
+
+        /* Hover Effects - Light up the path */
+        .project-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--text-white);
+            color: var(--text-white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Light up lines on hover */
+        .branch:hover::before,
+        .branch:hover::after {
+            background: var(--text-white);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .founder-tree:hover .trunk {
+             background: var(--text-white);
+             box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+    </style>
+    
 </head>
+
 <body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Portfolio</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="Resume.pdf" download="Royce_Gonsalves_Resume.pdf" class="btn-resume"
+                    style="text-decoration: none; display: inline-block;">
+                    Resume
+                </a>
+            </div>
+        </div>
+    </nav>
 
-<header>
-    <h1>Chi Nguyen</h1>
-    <p>Backend Developer</p>
-</header>
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-tagline">Developer & Designer</span>
+                <h1 class="hero-title">
+                    Hello, I'm<br>
+                    Royce Gonsalves
+                </h1>
+                <div class="profile-section">
+                    <!-- Main Bio Text -->
+                    <p class="bio-text">
+                      Crafting exceptional digital experiences through innovative design and cutting-edge development.
+                    </p>
+                  
+                    <!-- Branch Design Section -->
+                    <div class="founder-tree">
+                      <span class="founder-label">Founder of</span>
+                      
+                      <div class="trunk"></div>
+                      
+                      <div class="branches">
+                        <!-- Left Branch: Spreadlink -->
+                        <div class="branch">
+                          <a href="./spreadlink.html" target="_blank" class="project-btn">
+                            Spreadlink
+                          </a>
+                        </div>
+                  
+                        <!-- Right Branch: Griddraft.pro -->
+                        <div class="branch">
+                          <a href="https://griddraft.pro/" target="_blank" class="project-btn">
+                            Griddraft.pro
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="window.location.href='#projects'">View My Work</button>
+                    <button class="btn-secondary" onclick="window.location.href='#contact'">Get In Touch</button>
+                </div>
+            </div>
 
-<section class="about">
-    <h2>About Me</h2>
-    <p>
-        I am a developer interested in backend development,
-        Laravel, Java, and cloud deployment.
-    </p>
-</section>
+            <div class="hero-visual">
+                <spline-viewer url="https://prod.spline.design/ABrQHVpts78MTmiH/scene.splinecode"></spline-viewer>
+            </div>
+        </div>
+    </section>
 
-<section class="projects">
-    <h2>Projects</h2>
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Projects</h2>
+                <p class="section-subtitle">Showcasing innovation and creativity</p>
+            </div>
+            <div class="project-categories">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="applications">Applications</button>
+                <button class="category-btn" data-category="websites">Websites</button>
+                <button class="category-btn" data-category="games">Games</button>
+                <button class="category-btn" data-category="models3d">3D Models</button>
+                <button class="category-btn" data-category="graphics">Graphics</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="applications">
+                    <div class="project-image">
+                        <img class="project-icon" src="spreadlink.png" alt="App icon">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Spreadlink</h3>
+                        <p class="project-description">The Next-Generation Social Media Platform for Entertainment and
+                            Creative Expression. Built to empower creators.</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>Enterprise level project.</li>
+                                <li>200+ Downloads</li>
+                                <li>4.9 Star Rating</li>
+                                <li>150+ Countries</li>
+                                <li>0% Ads</li>
+                     
+                            </ul>
+                        </div>
+                        <a href="./spreadlink.html" class="btn-outline">View Project</a>
+                    </div>
+                </div>
 
-    <div class="project">
-        <h3>Smart School Bus</h3>
-        <a href="https://github.com/Chi876543">View Code</a>
-    </div>
+                <div class="project-card" data-category="websites">
+                    <div class="project-image">
+                        <img class="project-icon" src="./musicplayer.png" alt="App icon">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Websites</h3>
+                        <p class="project-description">Collection of website projects focused on conversion and UX.</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>4+ Projects</li>
+                                <li>Conversion‑focused UX</li>
+                                <li>Performance first</li>
+                                <li>Responsive by design</li>
+                            </ul>
+                        </div>
+                        <a href="./web.html" class="btn-outline">View Project</a>
+                    </div>
+                </div>
 
-    <div class="project">
-        <h3>Room Renting System</h3>
-        <a href="https://github.com/Chi876543">View Code</a>
-    </div>
+                <div class="project-card" data-category="Programs">
+                    <div class="project-image">
+                        <img class="project-icon" src="programs.jpg" alt="App icon">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Programs</h3>
+                        <p class="project-description">
+                            Showcasing diverse programming projects that demonstrate proficiency in coding.
+                        </p>
+                        <div class="project-features">
+                            <ul>
+                                <li>10+ Projects</li>
+                                <li>Utility programs</li>
+                                <li>Cross-platform applications</li>
+                                <li>Innovative problem-solving</li>
+                            </ul>
+                        </div>
+                        <a href="./programs.html" class="btn-outline">View Project</a>
+                    </div>
+                </div>
 
-    <div class="project">
-        <h3>Software Testing</h3>
-        <a href="https://github.com/Chi876543">View Code</a>
-    </div>
+                <div class="project-card" data-category="games">
+                    <div class="project-image">
+                        <img class="project-icon" src="carimg2.jpg" alt="App icon">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Games</h3>
+                        <p class="project-description">
+                            A curated selection of captivating mobile games offering diverse gameplay styles.
+                        </p>
+                        <div class="project-features">
+                            <ul>
+                                <li>3 Projects</li>
+                                <li>Engaging and immersive gameplay</li>
+                                <li>Intuitive mobile controls</li>
+                                <li>Polished graphics</li>
+                            </ul>
+                        </div>
+                        <a href="./games.html" class="btn-outline">View Project</a>
+                    </div>
+                </div>
 
-</section>
+                <div class="project-card" data-category="models3d">
+                    <div class="project-image">
+                        <img class="project-icon" src="car3.jpg" alt="App icon">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">3D Models</h3>
+                        <p class="project-description">Professional 3D models and visualizations for various
+                            applications.</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>5 Projects</li>
+                                <li>High-quality models</li>
+                                <li>Accurate geometry</li>
+                                <li>Professional lighting</li>
+                            </ul>
+                        </div>
+                        <a href="./3dmodels.html" class="btn-outline">View Project</a>
+                    </div>
+                </div>
 
-<section class="contact">
-    <h2>Contact</h2>
-    <p>GitHub: <a href="https://github.com/Chi876543">github.com/Chi876543</a></p>
-</section>
+                
 
-<footer>
-    <p>© 2026 Chi Nguyen</p>
-</footer>
+                <div class="project-card" data-category="graphics">
+                    <div class="project-image">
+                        <img class="project-icon" src="graphic.png" alt="App icon">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">UI/UX Design</h3>
+                        <p class="project-description">Explore my collection of intuitive and aesthetically pleasing
+                            UI/UX designs.</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>User research</li>
+                                <li>Wireframing & Prototyping</li>
+                                <li>Interactive design</li>
+                            </ul>
+                        </div>
+                        <a href="./graphics.html" class="btn-outline">View Project</a>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+    </section>
+
+    <section class="spotlight" id="spotlight">
+        <div class="container">
+            <div class="spotlight-wrapper">
+                <div class="spotlight-visual">
+                    <img id="spotlight-img" src="spreadlink.png" alt="Project Preview">
+                </div>
+                <div class="spotlight-info">
+                    <span class="spotlight-tag" id="spotlight-cat">Featured Work</span>
+                    <h2 id="spotlight-title" class="reveal-text">Spreadlink</h2>
+                    <p id="spotlight-desc" class="reveal-text">The Next-Generation Social Media Platform for
+                        Entertainment and Creative Expression.</p>
+                    <div class="spotlight-meta">
+                        <span id="spotlight-tech">Android • Java • Firebase</span>
+                    </div>
+
+                    <a id="spotlight-link" href="spreadlink.html" class="btn-outline">View Details</a>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">Building innovative solutions across various domains</p>
+            </div>
+            <div class="experience-grid">
+                <div class="experience-card" data-category="Social Media Platform">
+                    <div class="card-header">
+                        <h3 class="card-title">Founder & Lead Developer</h3>
+                        <span class="card-company">Spreadlink</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Founded and led the development of Spreadlink, a global social media platform designed to
+                            connect users across the world. Architected and implemented the entire tech stack,
+                            delivering a high-quality application with an emphasis on intuitive UI/UX and robust,
+                            scalable server-side infrastructure.</p>
+                    </div>
+                    <div class="card-category">
+                        <span class="category-tag">Social Media Platform</span>
+                    </div>
+                </div>
+
+                <div class="experience-card" data-category="Digital Marketing">
+                    <div class="card-header">
+                        <h3 class="card-title">SEO Specialist</h3>
+                        <span class="card-company">Fashion360</span>
+                    </div>
+                    <div class="card-content">
+                        <p>As Fashion 360's SEO Specialist, I optimized online content, led SEO strategy development,
+                            and stayed on top of industry trends for enhanced digital success.</p>
+                    </div>
+                    <div class="card-category">
+                        <span class="category-tag">Digital Marketing</span>
+                    </div>
+                </div>
+
+                <div class="experience-card" data-category="Development">
+                    <div class="card-header">
+                        <h3 class="card-title">Web & Android Developer</h3>
+                        <span class="card-company">Xtrio</span>
+                    </div>
+                    <div class="card-content">
+                        <p>At Xtrio, I specialize in crafting captivating digital experiences through web and Android
+                            development, emphasizing innovative design and seamless user engagement and successfully
+                            acquired 200,000+ users within 30 days through advanced SEO techniques.</p>
+                    </div>
+                    <div class="card-category">
+                        <span class="category-tag">Development</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <p class="section-subtitle">Expertise across the development spectrum</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./js.png" alt="JavaScript">
+                    <span class="skill-name">JavaScript</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./physics.png" alt="React">
+                    <span class="skill-name">React</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./node-js.png" alt="Node.js">
+                    <span class="skill-name">Node.js</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./java.png" alt="Java">
+                    <span class="skill-name">Java</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./mysql-database.png" alt="MySQL">
+                    <span class="skill-name">MySQL</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./python.png" alt="Python">
+                    <span class="skill-name">Python</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./artificial-intelligence.png" alt="AI">
+                    <span class="skill-name">AI Prompt</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./text.png" alt="CSS">
+                    <span class="skill-name">CSS</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./designer (1).png" alt="UI/UX">
+                    <span class="skill-name">UI/UX</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./seo.png" alt="SEO">
+                    <span class="skill-name">SEO</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./app-development.png" alt="Mobile">
+                    <span class="skill-name">App Dev</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./coding (1).png" alt="Full Stack">
+                    <span class="skill-name">Full-Stack</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./publicity.png" alt="Social Media">
+                    <span class="skill-name">Social Media</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./cube.png" alt="3D">
+                    <span class="skill-name">3D Models</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./layers.png" alt="Graphics">
+                    <span class="skill-name">Graphic Design</span>
+                </div>
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./unity.png" alt="Unity">
+                    <span class="skill-name">Unity</span>
+                </div>
+                
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./git.png" alt="Git">
+                    <span class="skill-name">Git</span>
+                </div>
+            
+                <div class="skill-item">
+                    <img class="skill-icon-img" src="./figma.png" alt="Figma">
+                    <span class="skill-name">Figma</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Ready to bring your ideas to life</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <a href="mailto:roycenoel2001@gmail.com">roycenoel2001@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <div class="social-grid">
+                            <a href="https://github.com/roycenoel" target="_blank" class="social-link">
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/royce-gonsalves-478782212/" target="_blank"
+                                class="social-link">
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://www.instagram.com/royce_gonsalves_/" target="_blank" class="social-link">
+                                <span>Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div style="margin-bottom: 1.5rem;">
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Name" required>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <input type="email" id="email" name="email" class="form-input" placeholder="Email" required>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <textarea id="message" name="message" class="form-input" rows="4" placeholder="Message"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Royce Gonsalves. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
+
 </html>
